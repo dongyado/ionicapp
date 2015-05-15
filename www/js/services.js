@@ -10,6 +10,14 @@ angular.module('starter.services', [])
     };
 })
 
+.factory('Streams', function(){
+
+    return {
+        streamUrl: 'http://app.lerays.com/api/stream/host'
+    };
+
+})
+
 .factory('Chats', function() {
     // Might use a resource here that returns a JSON array
 
