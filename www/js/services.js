@@ -8,10 +8,6 @@ angular.module('starter.services', [])
         baseUrl: 'http://app.lerays.com'
 
     };
-
-})
-
-}
 })
 
 .factory('Chats', function() {
