@@ -1,7 +1,8 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, Config) {
-    console.log(Config.baseUrl);
+    //$scope.link = Config.baseUrl;
+    $scope.link = 'http://app.lerays.com';
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
