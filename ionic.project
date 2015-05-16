@@ -1,12 +1,18 @@
 {
-  "name": "Weitoutiao",
-  "app_id": "",
-  "gulpStartupTasks": [
-    "sass",
-    "watch"
-  ],
-  "watchPatterns": [
-    "www/**/*",
-    "!www/lib/**/*"
-  ]
+    "name": "Weitoutiao",
+        "app_id": "",
+        "gulpStartupTasks": [
+            "sass",
+        "watch"
+            ],
+        "proxies": [
+        {
+            "path": "/api",
+            "proxyUrl": "http://app.lerays.com/api"
+        }
+    ],
+        "watchPatterns": [
+            "www/**/*",
+        "!www/lib/**/*"
+    ]
 }
