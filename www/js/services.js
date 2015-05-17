@@ -9,15 +9,27 @@ angular.module('starter.services', [])
 
     };
 })
+
 .factory('Streams', function($http, Config, ApiEndpoint) {
 
-    var getApiData = function() {
-        //return $http.get(ApiEndpoint.url + '/stream/hot')
-        return $http.get(Config.apiUrl+ '/stream/hot')
-        .then(function(data) {
-            return data;
+    var getApiData = function(pageno, time, sign, operation) {
+        //var url = ApiEndpoint.url + '/stream/hot';
+        var url = Config.apiUrl+ '/stream/hot';
+        if (!pageno) pageno = 1;
+        url += '?pageno='+pageno;
+
+        if (time && sign) {
+            url += '&pubtime='+time+'&cate_sign='+sign+'&t='+operation;
+        }
+        
+
+        console.log(url);
+        return $http.get(url).then(function(data) {
+            return data.data;
         });
     };
+
+
 
     return {
         getApiData: getApiData

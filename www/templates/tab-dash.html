@@ -1,6 +1,10 @@
 <ion-view view-title="热门">
 
   <ion-content class="padding">
+    <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="doRefresh()">
+    </ion-refresher>
     <ion-list>
     <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="stream in streams" type="item-text-wrap" href="#/tab/stream/{{stream.Id}}/{{stream.ack_code}}/{{stream.title}}">
         <img ng-src="{{stream.img_src}}">
@@ -14,5 +18,9 @@
       </ion-item>
     
     </ion-list>
+    <ion-infinite-scroll
+        on-infinite="loadMore()"
+        distance="1%">
+      </ion-infinite-scroll>`
   </ion-content>
 </ion-view>
