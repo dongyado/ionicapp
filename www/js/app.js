@@ -24,6 +24,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         $rootScope.streamlist = [];
     });
 })
+
+.config(function($ionicConfigProvider) {
+    if (!ionic.Platform.isIOS()) {
+        $ionicConfigProvider.scrolling.jsScrolling(false);
+    }
+})
 .constant('ApiEndpoint', {
     url: 'http://localhost:8100/api'
 })
@@ -76,22 +82,22 @@ controller: 'DashCtrl'
 
 .state('tab.stream-detail', {
     url: '/stream/:streamId/:streamAck/:streamTitle',
-    views: {
-        'tab-dash': {
-            templateUrl: 'templates/stream-detail.html',
-    controller: 'StreamDetailCtrl'
-        }
+views: {
+    'tab-dash': {
+        templateUrl: 'templates/stream-detail.html',
+controller: 'StreamDetailCtrl'
     }
+}
 })
 
 .state('tab.feed', {
     url: '/feed',
-    views: {
-        'tab-feed': {
-            templateUrl: 'templates/tab-feed.html',
-    controller: 'FeedCtrl'
-        }
+views: {
+    'tab-feed': {
+        templateUrl: 'templates/tab-feed.html',
+controller: 'FeedCtrl'
     }
+}
 })
 
 .state('tab.find', {
