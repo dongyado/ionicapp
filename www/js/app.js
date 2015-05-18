@@ -24,9 +24,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         $rootScope.streamlist = [];
     });
 })
+
+
 .constant('ApiEndpoint', {
     url: 'http://localhost:8100/api'
 })
+
+
+.filter('escape', function() {
+      return window.encodeURIComponent;
+
+})
+
+
 .config(function($ionicConfigProvider) {
     $ionicConfigProvider.views.maxCache(5);
 

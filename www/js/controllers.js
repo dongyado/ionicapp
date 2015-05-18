@@ -45,6 +45,8 @@ angular.module('starter.controllers', [])
             $rootScope.streamlist = $rootScope.streamlist.concat(data.data.list);
 
             $scope.streams = $rootScope.streamlist;
+            //
+            //$scope.streams = data.data.list;
 
             $rootScope.pageno = data.data.pageno;
             $rootScope.nexttime = data.data.nexttime;
