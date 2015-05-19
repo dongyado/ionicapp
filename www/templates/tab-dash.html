@@ -8,7 +8,9 @@
     <ion-item  collection-repeat="stream in streams" item-height="180px" href="#/tab/stream/{{stream.Id}}/{{stream.ack_code}}/{{stream.title|escape}}">
         <h2>{{stream.title}}</h2>
         <p>{{stream.src_title}}</p>
-        <img ng-src="{{stream.img_src}}">
+        <div class="list-item-image">
+            <img ng-src="{{stream.img_src}}" style="">
+        </div>
   </ion-item>
     
     <ion-infinite-scroll
