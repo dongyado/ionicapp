@@ -26,6 +26,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     padding: 5px;
     margin-top: 5px;
     border-bottom: 1px solid #f0f0f0;
+    display: block;
+    text-decoration: none;
 
     .list-item-header {
         h2 {

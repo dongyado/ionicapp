@@ -13,8 +13,8 @@ angular.module('starter.services', [])
 .factory('Streams', function($http, Config, ApiEndpoint) {
 
     var getApiData = function(pageno, time, sign, operation) {
-        //var url = ApiEndpoint.url + '/stream/hot';
-        var url = Config.apiUrl+ '/stream/hot';
+        var url = ApiEndpoint.url + '/stream/hot';
+        //var url = Config.apiUrl+ '/stream/hot';
         if (!pageno) pageno = 1;
         url += '?pageno='+pageno;
 

@@ -7681,7 +7681,9 @@ a.button {
   box-sizing: border-box;
   padding: 5px;
   margin-top: 5px;
-  border-bottom: 1px solid #f0f0f0; }
+  border-bottom: 1px solid #f0f0f0;
+  display: block;
+  text-decoration: none; }
   .stream-list-item .list-item-header h2 {
     font-size: 14px;
     padding: 6px 0px;
