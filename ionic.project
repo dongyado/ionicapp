@@ -1,18 +1,25 @@
 {
-    "name": "Weitoutiao",
-        "app_id": "",
-        "gulpStartupTasks": [
-            "sass",
-        "watch"
-            ],
-        "proxies": [
-        {
-            "path": "/api",
-            "proxyUrl": "http://app.lerays.com/api"
-        }
-    ],
-        "watchPatterns": [
-            "www/**/*",
-        "!www/lib/**/*"
-    ]
+  "name": "Weitoutiao",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://app.lerays.com/api"
+    }
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ],
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
 }
