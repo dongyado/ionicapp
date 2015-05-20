@@ -25,14 +25,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     });
 })
 
+
+/*
 .config(function($ionicConfigProvider) {
     if (!ionic.Platform.isIOS()) {
         $ionicConfigProvider.scrolling.jsScrolling(false);
     }
 })
+*/
+
 .constant('ApiEndpoint', {
     url: 'http://localhost:8100/api'
 })
+
+
+.filter('escape', function() {
+      return window.encodeURIComponent;
+
+})
+
+
 .config(function($ionicConfigProvider) {
     $ionicConfigProvider.views.maxCache(5);
 
