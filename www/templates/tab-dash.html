@@ -5,13 +5,21 @@
         pulling-text="Pull to refresh..."
         on-refresh="doRefresh()">
     </ion-refresher>
-    <ion-item  collection-repeat="stream in streams" item-height="180px" href="#/tab/stream/{{stream.Id}}/{{stream.ack_code}}/{{stream.title|escape}}">
-        <h2>{{stream.title}}</h2>
-        <p>{{stream.src_title}}</p>
+    <div class="stream-list-item"  collection-repeat="stream in streams" item-height="210px" href="#/tab/stream/{{stream.Id}}/{{stream.ack_code}}/{{stream.title|escape}}">
+        <div class="list-item-header" >
+            <h2>{{stream.title}}</h2>
+            <div class="list-item-sub-header">
+                <div class="sub-header-left">{{stream.src_title}}</div>
+                    
+                <div class="sub-header-right">
+                    <i class="icon ion-eye"></i><i class="visit-num" >&nbsp;{{stream.visit_num}}</i>
+                </div>
+            </div>
+        </div>
         <div class="list-item-image">
             <img ng-src="{{stream.img_src}}" style="">
         </div>
-  </ion-item>
+  </div>
     
     <ion-infinite-scroll
         on-infinite="loadMore()"

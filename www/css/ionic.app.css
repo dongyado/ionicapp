@@ -7676,3 +7676,36 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+.stream-list-item {
+  box-sizing: border-box;
+  padding: 5px;
+  margin-top: 5px;
+  border-bottom: 1px solid #f0f0f0; }
+  .stream-list-item .list-item-header h2 {
+    font-size: 14px;
+    padding: 6px 0px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 0px; }
+  .stream-list-item .list-item-header .list-item-sub-header {
+    position: relative;
+    font-size: 11px;
+    color: #999;
+    margin-bottom: 2px; }
+    .stream-list-item .list-item-header .list-item-sub-header .sub-header-left {
+      width: 100%; }
+    .stream-list-item .list-item-header .list-item-sub-header .sub-header-right {
+      position: absolute;
+      top: 0px;
+      right: 5px; }
+      .stream-list-item .list-item-header .list-item-sub-header .sub-header-right .icon {
+        font-size: 14px;
+        padding-top: 2px; }
+  .stream-list-item .list-item-image {
+    height: 140px;
+    overflow: hidden;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; }
+    .stream-list-item .list-item-image img {
+      width: 100%; }
