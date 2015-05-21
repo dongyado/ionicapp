@@ -5,7 +5,7 @@
         pulling-text="Pull to refresh..."
         on-refresh="doRefresh()">
     </ion-refresher>
-    <a class="stream-list-item"  collection-repeat="stream in streams" item-height="210px" ng-href="#/tab/stream/{{stream.Id}}/{{stream.ack_code}}/{{stream.title|escape}}">
+    <a class="stream-list-item"  collection-repeat="stream in streams" item-width="100%" item-height="210px" ng-href="#/tab/stream/{{stream.Id}}/{{stream.ack_code}}/{{stream.title|escape}}">
         <div class="list-item-header" >
             <h2>{{stream.title}}</h2>
             <div class="list-item-sub-header">
