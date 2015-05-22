@@ -2,12 +2,6 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($rootScope, $scope, $http, Config, Streams) {
   
-    var _headers = {
-        'Access-Control-Allow-Origin' : '*',
-'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
-'Content-Type': 'application/json',
-'Accept': 'application/json'
-    };
 
     //$http({
     //    method: 'GET', 
@@ -32,7 +26,6 @@ angular.module('starter.controllers', [])
         $rootScope.prevsign = data.data.prevsign;
         console.log($rootScope);
     });
-*/
     $scope.loadMore = function() {
         Streams.getApiData(
             $rootScope.pageno + 1,
@@ -58,9 +51,13 @@ angular.module('starter.controllers', [])
         });
     };
 
+    */
+    $scope.streams = new Streams();
+    /*
     $scope.$on('$stateChangeSuccess', function() {
         $scope.loadMore();
     });
+    */
 })
 
 
