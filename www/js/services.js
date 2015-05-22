@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-// 配置信息
+// config 
 .factory('Config', function() {
 
     return {
@@ -10,93 +10,57 @@ angular.module('starter.services', [])
     };
 })
 
-.factory('Streams', function(Config, $rootScope){
+//----------------------------------------
+/**
+ * streams list service
+ *
+ * */
+.factory('Streams', function($http, Config, $rootScope, ApiEndpoint) 
+{
+    var streams = [];
+    var streamService = {};
+    var params = {};
+    
+    streamService.getList = function(pageno, time, sign, operation) {
 
-    Class Streams {
-        constructor(option = {})
-        {
-            this.items     = [];
-            this.condition = {};
-            this.params    = {};
-        }
-
-        /**
-         * get stream list
-         *
-         * */
-        getList(){
-            return this.items;
-        }
-
-
-        /**
-         * load More streams
-         *
-         * */
-
-        loadMore(options){
-
-            var getApiData = function(options) {
-                var url = ApiEndpoint.url + '/stream/hot';
-                //var url = Config.apiUrl+ '/stream/hot';
-                if (!options) options = this.params;
-
-                if (!options.pageno) options.pageno = 1;
-                url += '?pageno=' + options.pageno;
-
-                if (options.time && options.sign) {
-                    url += '&pubtime=' + options.time 
-                        + '&cate_sign=' + options.sign 
-                        + '&t=' + options.operation;
-                }
-                
-
-                $http.get(url).then(function(response) {
-                    this.params.pageno   = response.data.data.pageno;
-                    this.params.nexttime = response.data.data.nexttime;
-                    this.params.nextsign = response.data.data.nextsign;
-                    this.params.prevtime = response.data.data.prevtime;
-                    this.params.prevsign = response.data.data.prevsign;
-
-                    console.log(data);
-                    for(var i = 0; i < response.data.data.list.length; i++)
-                    {
-                        this.items.push(response.data.data.list[i]);
-                    }
-                });
-            };
-
-        }
-    }
-
-    return Streams;
-
-})
-
-/*
-.factory('Streams', function($http, Config, ApiEndpoint) {
-
-    var getApiData = function(pageno, time, sign, operation) {
         var url = ApiEndpoint.url + '/stream/hot';
         //var url = Config.apiUrl+ '/stream/hot';
+        
         if (!pageno) pageno = 1;
         url += '?pageno='+pageno;
 
-        if (time && sign) {
-            url += '&pubtime='+time+'&cate_sign='+sign+'&t='+operation;
+        if (time && sign) 
+        {
+            url += '&pubtime=' + time + '&cate_sign=' + sign + '&t='+ operation;
         }
         
 
-        return $http.get(url).then(function(data) {
-            return data.data;
+        $http.get(url).then(function(res) {
+            for(var i = 0; i < res.data.data.list.length; i++)
+            {
+                streams.push(res.data.data.list[i]);    
+            }
+
+            params.pageno   = res.data.data.pageno;
+            params.nexttime = res.data.data.nexttime;
+            params.nextsign = res.data.data.nextsign;
+            params.prevtime = res.data.data.prevtime;
+            params.prevsign = res.data.data.prevsign;
+            $rootScope.$broadcast('scroll.infiniteScrollComplete');
+            console.log(res);
         });
+
+        return streams;
     };
 
-    return {
-        getApiData: getApiData
-    };
+    streamService.loadMore = function(){
+        return streamService.getList(params.pageno +1, params.nexttime, params.nextsign, 'n');
+    }
+
+    return streamService;
 })
-*/
+
+
 .factory('Chats', function() {
     // Might use a resource here that returns a JSON array
 

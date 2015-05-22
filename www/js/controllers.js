@@ -1,19 +1,6 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($rootScope, $scope, $http, Config, Streams) {
-  
-
-    //$http({
-    //    method: 'GET', 
-    //    url:Config.apiUrl + 'stream/hot', 
-    //    headers : _headers})
-    //    .success(function(data, status){
-    //        console.log(data); 
-    //        $scope.streams = data.data;
-    //    })
-    //    .finally(function(err){
-    //    });
-   
 
     /*
     Streams.getApiData().then(function(data){
@@ -50,14 +37,17 @@ angular.module('starter.controllers', [])
             $scope.$broadcast('scroll.infiniteScrollComplete');
         });
     };
-
     */
-    $scope.streams = new Streams();
+
+    console.log(Streams.loadMore());
     /*
-    $scope.$on('$stateChangeSuccess', function() {
-        $scope.loadMore();
+    $scope.loadMore = Streams.loadMore().then(function(data){
+        console.log(data);
     });
     */
+
+    $scope.$on('$stateChangeSuccess', function() {
+    });
 })
 
 
