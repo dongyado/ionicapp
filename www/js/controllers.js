@@ -2,51 +2,15 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($rootScope, $scope, $http, Config, Streams) {
 
-    /*
-    Streams.getApiData().then(function(data){
-        console.log(data);
-        $scope.streams = data.data.list;
-        $rootScope.pageno = data.data.pageno;
-        $rootScope.nexttime = data.data.nexttime;
-        $rootScope.nextsign = data.data.nextsign;
-        $rootScope.prevtime = data.data.prevtime;
-        $rootScope.prevsign = data.data.prevsign;
-        console.log($rootScope);
-    });
-    $scope.loadMore = function() {
-        Streams.getApiData(
-            $rootScope.pageno + 1,
-            $rootScope.nexttime,
-            $rootScope.nextsign,
-            'n'
-        ).then(function(data){
-            
-            //console.log($rootScope.streamlist);
-            $rootScope.streamlist = $rootScope.streamlist.concat(data.data.list);
-
-            $scope.streams = $rootScope.streamlist;
-            //
-            //$scope.streams = data.data.list;
-
-            $rootScope.pageno = data.data.pageno;
-            $rootScope.nexttime = data.data.nexttime;
-            $rootScope.nextsign = data.data.nextsign;
-            $rootScope.prevtime = data.data.prevtime;
-            $rootScope.prevsign = data.data.prevsign;
-
-            $scope.$broadcast('scroll.infiniteScrollComplete');
+    $scope.loadMore = function(){
+        Streams.loadMore().then(function(data){
+            $scope.streams = data;
+            $rootScope.$broadcast('scroll.infiniteScrollComplete');
         });
-    };
-    */
-
-    console.log(Streams.loadMore());
-    /*
-    $scope.loadMore = Streams.loadMore().then(function(data){
-        console.log(data);
-    });
-    */
+    }
 
     $scope.$on('$stateChangeSuccess', function() {
+        $scope.loadMore();
     });
 })
 

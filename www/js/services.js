@@ -15,7 +15,7 @@ angular.module('starter.services', [])
  * streams list service
  *
  * */
-.factory('Streams', function($http, Config, $rootScope, ApiEndpoint) 
+.factory('Streams', function($http, Config, $q, $rootScope, ApiEndpoint) 
 {
     var streams = [];
     var streamService = {};
@@ -23,8 +23,8 @@ angular.module('starter.services', [])
     
     streamService.getList = function(pageno, time, sign, operation) {
 
-        var url = ApiEndpoint.url + '/stream/hot';
-        //var url = Config.apiUrl+ '/stream/hot';
+        //var url = ApiEndpoint.url + '/stream/hot';
+        var url = Config.apiUrl+ '/stream/hot';
         
         if (!pageno) pageno = 1;
         url += '?pageno='+pageno;
@@ -35,7 +35,7 @@ angular.module('starter.services', [])
         }
         
 
-        $http.get(url).then(function(res) {
+        return $http.get(url).then(function(res) {
             for(var i = 0; i < res.data.data.list.length; i++)
             {
                 streams.push(res.data.data.list[i]);    
@@ -46,11 +46,12 @@ angular.module('starter.services', [])
             params.nextsign = res.data.data.nextsign;
             params.prevtime = res.data.data.prevtime;
             params.prevsign = res.data.data.prevsign;
-            $rootScope.$broadcast('scroll.infiniteScrollComplete');
-            console.log(res);
-        });
 
-        return streams;
+            console.log(streams);
+            return streams;
+        },function(res){
+            return streams;
+        });
     };
 
     streamService.loadMore = function(){
