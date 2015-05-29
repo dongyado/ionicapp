@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $rootScope) {
+.run(function($ionicPlatform, $rootScope, Tags) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -20,12 +20,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
 
 
-        //
-        $rootScope.streamlist = [];
+
+        // tags 
+        Tags.getTags().then(function(data){
+            $scope.tags = data;
+            console.log(data);
+        });
     });
 })
-
-
 /*
 .config(function($ionicConfigProvider) {
     if (!ionic.Platform.isIOS()) {

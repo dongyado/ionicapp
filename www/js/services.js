@@ -1,13 +1,38 @@
 angular.module('starter.services', [])
 
 // config 
-.factory('Config', function() {
+.factory('Config', function(ApiEndpoint) {
+    var api = 'http://app.lerays.com/api/';
 
+    api = ApiEndpoint.url;
     return {
         // baseUrl: 'http://localhost:3000',
-        apiUrl: 'http://app.lerays.com/api/'
+        apiUrl: api
 
     };
+})
+
+//--------------------------------------
+.factory('Tags', function($http, Config){
+    var tags = [];
+
+    var url = Config.apiUrl + '/stream/category/navi';
+
+    return {
+        getTags: function(){
+            return $http.get(url).then(function(res){
+                for(var i = 0; i < res.data.data.length; i++) {
+                    if (res.data.data[i].is_delete == false) 
+                    {
+                        tags.push(res.data.data[i]);
+                    }
+                }
+                return tags;
+            }, function(res) {
+                return tags;
+            });    
+        }
+    } 
 })
 
 //----------------------------------------
@@ -15,7 +40,7 @@ angular.module('starter.services', [])
  * streams list service
  *
  * */
-.factory('Streams', function($http, Config, $q, $rootScope, ApiEndpoint) 
+.factory('Streams', function($http, Config, $q, $rootScope) 
 {
     var streams = [];
     var streamService = {};
@@ -23,7 +48,6 @@ angular.module('starter.services', [])
     
     streamService.getList = function(pageno, time, sign, operation) {
 
-        //var url = ApiEndpoint.url + '/stream/hot';
         var url = Config.apiUrl+ '/stream/hot';
         
         if (!pageno) pageno = 1;
@@ -47,7 +71,6 @@ angular.module('starter.services', [])
             params.prevtime = res.data.data.prevtime;
             params.prevsign = res.data.data.prevsign;
 
-            console.log(streams);
             return streams;
         },function(res){
             return streams;
