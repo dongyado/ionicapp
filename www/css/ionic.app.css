@@ -7677,6 +7677,14 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.top-navi {
+  top: 0;
+  left: 0; }
+  .top-navi button {
+    width: 100px;
+    display: block;
+    float: left; }
+
 .stream-list-item {
   box-sizing: border-box;
   padding: 5px;

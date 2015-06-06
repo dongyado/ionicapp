@@ -19,12 +19,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             StatusBar.styleLightContent();
         }
 
-
-
         // tags 
         Tags.getTags().then(function(data){
-            $scope.tags = data;
-            console.log(data);
+           $rootScope.tags = data;
         });
     });
 })
@@ -53,7 +50,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     $ionicConfigProvider.tabs.position("bottom"); //Places them at the bottom for all OS
     $ionicConfigProvider.tabs.style("standard"); //Makes them all look the same across all OS
     // note that you can also chain configs
-    $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
+    $ionicConfigProvider.backButton.text('返回').icon('ion-chevron-left');
 })
 
 

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($rootScope, $scope, $http, Config, Streams) {
+.controller('DashCtrl', function($rootScope, $scope, $http, Config, Streams, Tags) {
 
     $scope.loadMore = function(){
         Streams.loadMore().then(function(data){
@@ -8,6 +8,10 @@ angular.module('starter.controllers', [])
             $rootScope.$broadcast('scroll.infiniteScrollComplete');
         });
     }
+
+    Tags.getTags().then(function(data){
+        $scope.tags = data;
+    });
 
     $scope.$on('$stateChangeSuccess', function() {
         $scope.loadMore();
